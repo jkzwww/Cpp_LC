@@ -1,0 +1,15 @@
+O(1) - Constant Time: An algorithm with constant time complexity means that its runtime doesn't depend on the size of the input. It performs the same amount of operations regardless of the input size. Examples include accessing a specific element in an array or performing basic arithmetic operations.
+
+O(log n) - Logarithmic Time: Algorithms with logarithmic time complexity typically divide the problem size in half at each step. Examples include binary search on a sorted array or searching in a balanced binary search tree.
+
+O(n) - Linear Time: Algorithms with linear time complexity have a runtime proportional to the size of the input. For example, iterating through an array or list once to perform a certain operation on each element.
+
+O(n log n) - Linearithmic Time: This time complexity often arises in sorting algorithms like merge sort, quicksort, or heapsort. It's a common time complexity for efficient sorting algorithms.
+
+O(n^2) - Quadratic Time: Algorithms with quadratic time complexity have a runtime proportional to the square of the input size. Examples include nested loops where each loop iterates over the entire input, such as a naive approach to matrix multiplication.
+
+O(n^k) - Polynomial Time: This represents algorithms where the runtime grows with the input size raised to some constant power k. Polynomial time complexities higher than quadratic, such as O(n^3), O(n^4), etc., are less common in practice but still encountered, particularly in certain types of dynamic programming algorithms.
+
+O(2^n) - Exponential Time: Algorithms with exponential time complexity have a runtime that grows exponentially with the input size. These algorithms often involve exhaustive search or recursion without proper memoization or pruning. They become impractical for even moderately large inputs.
+
+O(n!) - Factorial Time: Algorithms with factorial time complexity have a runtime that grows factorially with the input size. These algorithms are extremely inefficient and typically only feasible for very small inputs due to their rapid growth.
