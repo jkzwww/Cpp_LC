@@ -131,15 +131,22 @@ void extra_it_ops()
 {
 
     vector<int> vMarks = {20, 80, 70, 65, 43};
+    vector<int> sqMarks;
 
     // algo
     //std::random_shuffle(vMarks.begin(), vMarks.end());
     std::sort(vMarks.begin(), vMarks.end());
 
+    //Function transform(InputIt first1, InputIt last1, OutputIt d_first, UnaryOperation unary_op);
+    // back_inserter(vect) output iterator which uses push_back (automatic resize)
+    std::transform(vMarks.begin(),vMarks.end(),std::back_inserter(sqMarks),[](int mark){return mark*mark;});
+
     //Function for_each(InputIterator first, InputIterator last, Function f);
     std::for_each(vMarks.begin(),vMarks.end(),[](int &mark){ mark += 10;});
     auto print_elem = [](int elem){ cout << elem << "\t";};
     std::for_each(vMarks.begin(),vMarks.end(),print_elem);
+
+
 
 }
 
