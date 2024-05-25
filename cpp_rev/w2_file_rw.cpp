@@ -1,144 +1,109 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <sstream>
 using namespace std;
 
 //writing file
-int main() 
+bool writefile(string filename,string content) 
 {
-    ofstream fid ("example.txt");
+    ofstream fid (filename,std::ios_base::app);
     if (fid.is_open()) {
-        fid << "First line.\n";
+        fid << '\n';
+        fid << content;
         fid.close();
+        return true;
     }
-
-    else cout << "Unable to open file";
-    
-    return 0;
+    else{
+        cout << "Unable to open file";
+        return false;
+    }
 }
 
 //reading file 
-
-int main() 
-{
-
+vector<string> readfile(string filename)
+{   
+    vector<string> paragraph;
     string line;
-    ifstream fid ("example.txt");
+    ifstream fid (filename);
 
     if (fid.is_open() ) //check
     {
         while ( getline (fid,line))
         {
             cout << line << '\n';
+            paragraph.push_back(line);
         }
         fid.close();
     }
+    else{
+        cout << "Unable to open file";
+    } 
+    return paragraph;
+}
 
-    else cout <<"Unable to open file";
+void writeCSV(string filename)
+{
+    fstream fid;
+    fid.open(filename, ios::out | ios::app);
+
+    int n;
+    cout << "Enter number of datapoints: ";
+    cin >> n;
+    cout << "Enter the id number and name for " << n << "data :";
+
+    int id;
+    string name;
+    for(int i{};i<n;i++){
+        cin >> id
+            >> name;
+        
+        fid << id << "," 
+             << name << "\n";
+    }
     
-    return 0;
-
 }
 
-//reading and calculation
+std::vector<std::pair<int, string>> readCSV(string filename)
+{
+    fstream fid;
+
+    fid.open(filename,ios::in);
+
+    std::vector<std::pair<int, string>> datapoints;
+    // vecOfPairs.push_back(std::make_pair(1, 10));
+
+    vector<string>row;
+    string line,word,temp;
+
+    while(fid >> temp){
+        row.clear();
+
+        getline(fid,line);
+        
+        std::stringstream s(line);
+        while(getline(s,word,',')){
+            row.push_back(word);
+        }
+
+        int data_id = stoi(row[0]);
+        string data_str = row[1];
+        datapoints.push_back(std::make_pair(data_id, data_str));
+    }   
+
+    return datapoints;
+}       
+
 int main() 
 {
+    string filename = "sampletext.txt";
+    readfile(filename);
 
-	int fnum1 = 0, fnum2 = 0, result = 0;
-	fstream fid;
-	fid.open("numbers.txt");
-	fid >> fnum1;
-	fid >> fnum2;
-	fid.close();
-	result = fnum1 * fnum2;
-	cout << "the numbers multiplied is " << result;
-}
-
-
-//function(returns a type of data)
-int modulus(int a, int b)
-{
-    int r;
-    r = a % b;
-
-    return(r);
-}
-
-int main() 
-{
-    int a, b, z;
-    cout << "Enter numerator:";
-    cin >> a;
-    cout << "Enter denominator:";
-    cin >> b;
-
-    z = modulus(a, b);
-
-    cout << "The remainder is " << z << "\n";
-
+    string new_item = "strawberry";
+    writefile(filename,new_item); 
     return 0;
 }
 
-//void function (returns nothing)
 
-void welcome()
-{
-    cout << " We're open today!!";
-}
-
-int main() {
-
-    welcome();
-
-    return 0;
-}
-
-//get
-int main()
-{
-    char name[25];
-
-    cout << "Enter your pet's name: ";
-    cin.get(name,25);
-    cout << "Hope " << name << " is happy and healthy!\n\n";
-
-    return 0;
-}
-
-//ignore 
-int main () 
-{
-  char first, last;
-
-  cout << "Please, enter your first name followed by your surname: ";
-
-  first = cin.get();     // get one character
-  cin.ignore(256,' ');   // ignore until space
-
-  last = cin.get();      // get one character
-
-  cout << "Your initials are " << first << last << '\n';
-
-  return 0;
-}
-
-// casting
-// static_cast <new_type> (expression)
-float fPi = 3.14159f;
-// Store a rounded value in another variable
-int roughEnough = static_cast<int>(fPi);
-
-// lambda function
-/*
-[capture list] (parameter list) -> return_type {
-    // function body
-}
-[=] capture by value (copy)
-[&] capture by ref (access)
-[a, &b] capture a by value and b by reference
-*/
-
-auto add = [](int a, int b)-> int{ return a+b;};
-
-auto print_elem = [](int elem){ cout << elem;};
 
