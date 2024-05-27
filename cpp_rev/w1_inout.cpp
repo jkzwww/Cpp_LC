@@ -25,7 +25,7 @@ void welcome()
 	cout << "The local date and time is: " << time_str << endl;
 }
 
-//get
+
 int main()
 {
 	welcome();
@@ -93,3 +93,15 @@ int roughEnough = static_cast<int>(fPi);
 auto add = [](int a, int b)-> int{ return a+b;};
 
 auto print_elem = [](int elem){ cout << elem;};
+
+// untie to optimize performance
+int main_comp(){
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+	int a, b;
+    cin >> a >> b;
+    cout << a + b << "\n";
+
+	return 0;
+}
+

@@ -70,6 +70,7 @@
         "xlocmon": "cpp",
         "xloctime": "cpp",
         "complex": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "enc_dec_str": "c"
     }
 }

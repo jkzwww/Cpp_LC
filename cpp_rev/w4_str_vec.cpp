@@ -145,7 +145,10 @@ void extra_it_ops()
     std::for_each(vMarks.begin(),vMarks.end(),[](int &mark){ mark += 10;});
     auto print_elem = [](int elem){ cout << elem << "\t";};
     std::for_each(vMarks.begin(),vMarks.end(),print_elem);
-
+    
+    vector<int> nums = {1,2,3,4,5};
+    int x = 3;
+    std::for_each(nums.begin(),nums.end(),[x](int &no){ if(no != x){no *= 10;}});
 
 
 }
