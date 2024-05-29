@@ -1,96 +1,139 @@
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
 //reference
+void references(){
+  // alternative name for existing variable
+  int var = 100;
+  int& ref = var; // ref can never be void
+    
+  //refer to var without allowing modif through refB
+  // read only access
+  const int& refB = var;
 
-int score = 100;
-int& scoreRef = score; //must be initialised
-
-//swapping reference(can refer to main loop value)
-void byRefSwap(int& x, int& y)
-{
-    int temp = x;
-    x = y;
-    y = temp;
+  /*
+    - modify passed parameters through ref
+    - avoid copy of large structures
+    - in for loop to modify stuff (avoid copy)
+  */
 }
 
-//avoid changing ref
-const int& myScore = score;
 
-//pointer
-int* pScore = &score //store address of score in pointer
- 
-//pointer can be declared without initialisation
-int * pScore = NULL;
-int * pScore = 0;
-int * pScore = nullptr;
+void pointer_basics(){
 
-//derefencing (print value or else will print address)
-cout << *pScore;
+  int var = 35;
 
-//changing value
-pScore += 500; //change address 
-*pScore += 500; //change value
+  // null pointers (uninitialised)
+  int* ptrA = nullptr; // =0 ; =NULL
 
-//constant pointer
-int* const pScore = &score; //const location
-const int* pScore = &score; //const value pointed
+  // initialise pointer (store address)
+  int* ptr = &var; 
 
-const int* const pScore = &score; //const location and value
+  // update values
+  *ptr += 17;
+    
+  // dereferencing(get val at ptr)
+  std::cout << "pointer value: " << *ptr << endl;
 
-//object pointer  (for classes created manually)
-player rei();
-player* pRei = &rei;
+  //constant pointers
+  int* const ptrC = &var; //const location
+  const int* ptrD = &var; //const value pointed
+  const int* const ptrE = &var; //const location and value
 
-//diff deref way
-cout << (*pRei).GetName();
+  //pointer increment
+  int* p = &var;
+  *p++;   // same as *(p++): increment pointer, and dereference unincremented address
+  *++p;   // same as *(++p): increment pointer, and dereference incremented address
+  ++*p;   // same as ++(*p): dereference pointer, and increment the value it points to
+  (*p)++; // dereference pointer, and post-increment the value it points to 
 
-cout << pRei -> GetName(); //member access operator arrow
 
+}
 
 //pointer function
-void pointerSwap(int* x, int* y) //swap values pointed
+// pass by reference with pointer arguments
+void swapVal(int* x, int* y) //swap values pointed
 {
 	int temp = *x;  //remember to deref when changing value
 	*x = *y;
 	*y = temp;
 }
 
-void pointerSwap(int*& x, int*& y) //swap addresss pointed
+// pass by reference with reference arguments
+void byRefSwap(int& x, int& y)
+{   
+    int temp = x; // dont need deref, implicit deref
+    x = y;
+    y = temp;
+}
+
+void swapAddr(int*& x, int*& y) //swap addresss pointed
 {
 	int* temp = x;
 	x = y;
 	y = temp;
 }
 
-//heap
-int* pHeapInt = new int; //int(10)
-*pHeapInt = 10; 
+class Player 
+{
+  private:
+    int id;
+    string name;
+  public:
+    Player(int i=0, string x="XXX"): id(i), name(x){}
+    void shout(){std::cout << "Player#" << id << " " << name << endl;}
+};
 
-delete pHeapInt; //delete thing pointed to
+void class_ptrs(){
+  // object pointers
+  Player rei(0,"ayanami");
+  Player* ptrRei = &rei;
 
-pHeapInt = NULL; //set pointer to null
+  // deref
+  (*ptrRei).shout();
 
+  // direct pointer call member functions 
+  ptrRei->shout();
 
-//pointer for array
-int numbers[5];
-int * p;
-p = numbers;  *p = 10;
-p++;  *p = 20;
-p = &numbers[2];  *p = 30;
-p = numbers + 3;  *p = 40;
-p = numbers;  *(p+4) = 50;
+}
 
+void array_ptr(){
 
-//pointer increment
-*p++   // same as *(p++): increment pointer, and dereference unincremented address
-*++p   // same as *(++p): increment pointer, and dereference incremented address
-++*p   // same as ++(*p): dereference pointer, and increment the value it points to
-(*p)++ // dereference pointer, and post-increment the value it points to 
+  int numbers[5];
+  int* p;
+  p = numbers;  *p = 10;
+  p++;  *p = 20;
+  p = &numbers[2];  *p = 30;
+  p = numbers + 3;  *p = 40;
+  p = numbers;  *(p+4) = 50;
 
+  int val[3];
+  // array itself is address to 1st elem
+  // val = &val[0]
+  // val[0] = *val
+
+  //2d array
+  // nums[ i ][ j ] is equivalent to *(*(nums+i)+j)
+  int nums[2][3]  =  { { 16, 18, 20 }, { 25, 26, 27 } };
+
+  int no = *(*nums+1)+2;
+  cout << no << "is the elem at nums[1][2]";
+
+  // pointer pointer
+  char a;
+  char* b;
+  char** c;
+  a = 's';
+  b = &a;
+  c = &b;
+
+}
 
 //function as another function argument(pointer)
 // pointer to functions
-#include <iostream>
-using namespace std;
-
 int addition (int a, int b)
 { return (a+b); }
 
@@ -115,54 +158,3 @@ int main ()
   return 0;
 }
 
-
-//dynamic memory
-int* foo;
-foo = new int[5];
-*foo = 8;
-*(foo+1) = 32;
-foo[2] = 64;
-
-
-//nothrow check allocation
-int * foo;
-foo = new (nothrow) int [5];
-if (foo == nullptr)
-{
-  // error assigning memory. Take measures.
-}
-
-//new operator
-int* pPon;
-pPon = new char; //single element
-pPonde = new char [9]; //array
-
-//delete operator
-delete pPon;
-delete[] pPonde;
-
-
-//dynamic memory function
-int main ()
-{
-  int i,n;
-  int * p;
-  cout << "How many numbers would you like to type? ";
-  cin >> i;
-  p= new (nothrow) int[i];
-  if (p == nullptr)
-    cout << "Error: memory could not be allocated";
-  else
-  {
-    for (n=0; n<i; n++)
-    {
-      cout << "Enter number: ";
-      cin >> p[n];
-    }
-    cout << "You have entered: ";
-    for (n=0; n<i; n++)
-      cout << p[n] << ", ";
-    delete[] p;
-  }
-  return 0;
-}
