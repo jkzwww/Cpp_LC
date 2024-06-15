@@ -1,37 +1,72 @@
 
-NxM
+i = 0;
+j = height.size()-1;
 
-neighbours
-3x3
 
-row i col j
+while(i<j){
 
-i-1 j-1 ; i-1 j; i-1 j+1;
-i j-1; i j ; i j+1;
-i+1 j-1; i+1 j; i+1 j+1;
+    b = j-i;
+    h = min(height[i],height[j]);
+    area = b*h;    
 
-bool alive
+    max_area = max(area,max_area);
 
-N M lives
-op = [-1,0,1]
-
-    for (int i=0; i<N; i++) {
-        for (int j=0; j<M; j++) {
-            
-            bool alive = (game[i][j] == 'X');
-            if(alive){
-                for(int k=0; k<3; k++){
-                
-                    row1 = (i-1)%N;
-                    row2 = i;
-                    row3 = (i+1)%N;
-                    col = (j+op[k])%M;
-
-                    lives[row1][col]++;
-                    lives[row2][col]++;
-                    lives[row3][col]++;
-                }
-                lives[i][j]--;
-            }
-        }
+    if(h!=height[i] && height[i+1]-height[i]>1){
+        i++;
+    }else if(h!=height[j] && height[j-1]-height[j]>1){
+        j--;
+    }else{
+        j--;
     }
+}
+
+  vector<int>::iterator max_pos;
+        max_pos = max_element(height.begin()+i, height.end()-j);
+        int tallest = *max_pos;
+        int tallest_idx = distance(height.begin(),max_pos);
+
+        if(tallest-height[j] > j-tallest_idx){
+            j==
+        }
+
+
+while(i<j){
+    b = j-i;
+    h = min(height[i],height[j]);
+    
+    if(heigh[i+1])
+
+}
+
+
+max_area = 0;
+int left = 0;
+int right = numbers.size() - 1;
+while(left < right) {
+
+    b = right-left;
+    h = min(height[left],height[right]);
+    area = b*h;
+
+    if(area>max){
+        max = area;
+        if(height[left]==h){
+            left++;
+        }else{
+            right--;
+        }
+    }else{
+
+    }
+}
+
+height[i]==height[j]
+b
+
+if h = height[i]
+     x
+x    x
+x  x x
+xx xxx
+xx xxx
+------

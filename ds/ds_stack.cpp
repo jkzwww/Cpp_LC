@@ -79,6 +79,9 @@ int main(){
 
     my_stack.peek();
     my_stack.pop();
+    my_stack.pop();
+    my_stack.pop();
+    my_stack.peek();
 
     return 0;
 }

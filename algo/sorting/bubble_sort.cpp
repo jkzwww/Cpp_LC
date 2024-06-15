@@ -4,6 +4,25 @@
 #include <iostream>
 #include <algorithm>
 
+// single func implementation
+void bubble_sort(int* arr,int size){
+
+    bool sorted = false;
+    int temp;
+
+    while(!sorted){
+        sorted = true;
+
+        for(int i={}; i<size-1; i++){
+            if(arr[i] > arr[i+1]){
+                temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+                sorted = false;
+            }
+        }
+    }
+}
 
 void bubbleSort(int row[],int size,int direction);
 bool ascending(int left, int right);
@@ -120,22 +139,3 @@ void bubbleSortStr(char word[],int size,int direction){
     }
 }
 
-// single func implementation
-void bubble_sort(int* arr,int size){
-
-    bool sorted = false;
-    int temp;
-
-    while(!sorted){
-        sorted = true;
-
-        for(int i={}; i<size-1; i++){
-            if(arr[i] > arr[i+1]){
-                temp = arr[i];
-                arr[i] = arr[i+1];
-                arr[i+1] = temp;
-                sorted = false;
-            }
-        }
-    }
-}

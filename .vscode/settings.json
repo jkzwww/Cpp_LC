@@ -71,6 +71,8 @@
         "xloctime": "cpp",
         "complex": "cpp",
         "set": "cpp",
-        "enc_dec_str": "c"
+        "enc_dec_str": "c",
+        "numeric": "cpp",
+        "queue": "cpp"
     }
 }

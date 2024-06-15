@@ -55,6 +55,8 @@ void vector_event()
     // modify
     // access vector
     vMarks[0] = 85;
+    vMarks.front(); // access first element 
+    vMarks.back(); // access last element 
     vMarks.push_back(75); // next spot available
     //vMarks.pop_front(); // delete from head
     vMarks.pop_back();    // delete last thing(return)
