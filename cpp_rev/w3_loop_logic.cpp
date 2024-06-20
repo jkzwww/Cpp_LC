@@ -1,16 +1,12 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-//format : ctrl+k , ctrl+f;
-
-//if statement
-int main()
+// if statement
+void if_statement()
 {
-    int birthday = 5;
+    int birthday;
     cout << "please enter your birthday month: ";
     cin >> birthday;
 
@@ -31,12 +27,11 @@ int main()
         cout << "winter!\n\n";
     }
 
-    return 0;
 }
 
 
-//switch
-int main()
+// switch
+void switch_statement()
 {
     int experience;
     cout << "Please rate your experience (0-3): ";
@@ -67,8 +62,8 @@ int main()
 }
 
 
-//while loop
-int main()
+// while loop
+void while_loop()
 {
     int cards;
     cout << "How many cards do you have now?";
@@ -93,8 +88,8 @@ int main()
 }
 
 
-//dowhile loop
-int main()
+// dowhile loop
+void dowhile_loop()
 {
     char again = 'x';
 
@@ -109,74 +104,18 @@ int main()
 }
 
 
-//for loop and array
-int main()
+// for loop
+void for_loop()
 {
-    const int NUM_STUDENTS = 10;
-    int examMarks[NUM_STUDENTS];
-    for (int i = 0; i < NUM_STUDENTS; i++) //initialisation;check;action
-    {
-        examMarks[i] = 0;  //initialise all marks
-        cout << examMarks[i];
-    }
+    vector<int> arr1 = {1,2,3};
+    const int N = 3;
+    int arr2[N] = {4,5,6};
 
-}
+    // auto range
+    for(auto& i:arr1){ cout << i; };
 
-//array
-int examMarks [50]; //declare with [size]
-
-int examMarks[] = {80,50,55}; //direct element (size inferred as 3)
-
-char mygrade[] = "pass"; // = {'p','a','s','s','\0'} (null-terminated character sequence)
-
-char mygrade[80];
- 
-
-//2D arrays
-const int NUM_STUDENTS = 5;
-const int NUM_MARKS = 4;
-int marks[NUM_STUDENTS][NUM_MARKS]; //row,columm
-
-
-//initialise and calculation with for loops for arrrays
-int main()
-{
-    int marks;
-    int result[4][3];
-    for (int row = 0; row < 4; row++)
-    {
-        for (int col = 0; col < 3; col++)
-        {
-            cout << "Enter marks of assignment " << col << " for student " << row << " : ";
-            cin >> marks;
-            result[row][col] = marks;
-        }
-    }
-
-    for (int col = 0; col < 3; col++)
-    {
-        float total = 0;
-
-        for (int row = 0; row < 4; row++)
-        {
-            total += result[row][col];
-        }
-
-        cout << "\nAssignment " << col << " average : " << total / 5 << endl;
-
-    }
-
-}
-
-
-//array loop
-int main()
-{
-  int myarray[3] = {10,20,30};
-
-  for (int i=0; i<3; ++i)
-    ++myarray[i];
-
-  for (int elem : myarray)
-    cout << elem << '\n';
+    // traditional with idx
+    for(int i{}; i<arr1.size(); i++){ cout << arr1[i]; };
+    
+    for(int j{}; j<N; j++){ cout << arr2[j]; };
 }

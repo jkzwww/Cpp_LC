@@ -13,10 +13,12 @@ vector<int> ref_topKFrequent(vector<int>& nums, int k) {
     for (int i = 0; i < nums.size(); i++) {
         countMap[nums[i]]++;
     }
+    
     for (auto i = countMap.begin(); i != countMap.end(); i++) {
-        // value used as index, key used as value
+        // freq used as index row, numsbers recorded as arrays
         bucketCount[i->second].push_back(i->first); //vector account for similar freq values
     }
+
     for (int i = nums.size(); i >= 0; i--) { //higher freq = nums.size
         if (results.size() >= k) {
             break;

@@ -3,32 +3,78 @@
 #include <fstream>
 #include <ctime>
 #include <string>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
 //function(returns a type of data)
 int mymodulus(int a, int b)
 {
-    int r;
-    r = a % b;
-
-    return(r);
+    int r = a % b;
+	return r;
 }
 
 //void function (returns nothing)
 void welcome()
 {
     cout << " Welcome, we're open today!!\n";
-	
-	time_t now = time(0);
-	char* time_str = ctime(&now);
-
-	cout << "The local date and time is: " << time_str << endl;
 }
 
+
+// casting
+// static_cast <new_type> (expression)
+float fPi = 3.14159f;
+// Store a rounded value in another variable
+int roughenuf= static_cast<int>(fPi);
+
+// lambda function
+/*
+[capture list] (parameter list) -> return_type {
+    // function body
+}
+[=] capture by value (copy, ath the time lambda func created)
+[&] capture by ref (access, change reflected)
+[a, &b] capture a by value and b by reference
+
+*/
+void lamda_func(){
+	int x = 3;
+	int y = 5;
+
+	x = 10;
+	y = 35;
+
+	auto print_val = [x](){ cout << x; }; 
+	auto print_ref = [&x](){ cout << x; };
+	auto modify_ref = [&x]() { x = 25; };
+	auto modify_val = [x]() mutable{ x = 50; cout <<"x in mutable lambda: " << x;};
+
+	auto print_all_val = [=]() { cout << x << " & " << y; };
+	auto print_all_ref = [&]() { cout << x << " & " << y;};
+	
+	auto add = [](int a, int b)-> int{ return a+b;};
+	cout << add(3,4);
+
+	// to be used iteratively
+	auto print_elem = [](int elem){ cout << elem;};
+	std::vector<int> vec = {10, 20, 30, 40, 50};
+    std::for_each(vec.begin(), vec.end(), print_elem);
+
+}
+
+
+/*
+IO program
+*/
 
 int main()
 {
 	welcome();
+
+	time_t now = time(0);
+	char* time_str = ctime(&now);
+	cout << "The local date and time is: " << time_str << endl;
 
 	int userNo;
 	std::cout << "Enter your queue number: ";
@@ -73,35 +119,3 @@ int main()
 
     return 0;
 }
-
-// casting
-// static_cast <new_type> (expression)
-float fPi = 3.14159f;
-// Store a rounded value in another variable
-int roughEnough = static_cast<int>(fPi);
-
-// lambda function
-/*
-[capture list] (parameter list) -> return_type {
-    // function body
-}
-[=] capture by value (copy)
-[&] capture by ref (access)
-[a, &b] capture a by value and b by reference
-*/
-
-auto add = [](int a, int b)-> int{ return a+b;};
-
-auto print_elem = [](int elem){ cout << elem;};
-
-// untie to optimize performance
-int main_comp(){
-	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-
-	int a, b;
-    cin >> a >> b;
-    cout << a + b << "\n";
-
-	return 0;
-}
-

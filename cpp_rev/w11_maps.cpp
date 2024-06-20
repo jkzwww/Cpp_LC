@@ -12,9 +12,7 @@ void simple_maps(vector<int>& nums){
 
     unordered_map<int,int> nummap;
     map<int,int> idmap;
-    multimap<int,int> capitalmap;
-
-    
+   
     for(int i{}; i<nums.size(); ++i){
         if(nummap[nums[i]] != 0) { std::cout << "duplicate found!\n"; }
         // number as key, freq as val

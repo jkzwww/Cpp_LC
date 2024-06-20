@@ -73,6 +73,7 @@
         "set": "cpp",
         "enc_dec_str": "c",
         "numeric": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "w4_arrays": "c"
     }
 }
